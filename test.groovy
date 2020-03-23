@@ -1,6 +1,6 @@
 job('gameoflife') {
     scm {
-        git("file://${thisRepositoryDir}/")
+        git("https://github.com/Bhaskarganesh/gameoflife.git")
     }
     jdk('jdk-1.8')
     steps {
