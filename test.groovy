@@ -1,13 +1,8 @@
-job('gameoflife') {
-    jdk('jdk-1.8')
-    steps {
-        maven {
-            mavenInstallation('maven3')
-            rootPOM("${projectDir}/pom.xml")
-            goals('test')
-        }
+job('petclinic') {
+    scm {
+        git('git://github.com/Bhaskarganesh/spring-petclinic.git')
     }
-    publishers {
-        archiveJunit("${projectDir}/**/surefire-reports/*.xml")
+    steps {
+        maven('-e clean test')
     }
 }
