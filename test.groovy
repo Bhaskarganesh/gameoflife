@@ -1,7 +1,7 @@
 def String thisRepositoryDir = System.getProperty('user.dir')
 def String projectDir = 'projects/vending-machine-kata-solution'
 
-job('gameoflife') {
+job('DSL') {
     scm {
         git("file://${thisRepositoryDir}/")
     }
