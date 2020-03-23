@@ -1,13 +1,19 @@
-job('DSL') {
-  scm {
-    git ('https://github.com/Bhaskarganesh/gameoflife.git')
-  }
-  steps {
-    dsl {
-      external('*.groovy')  
-      // default behavior
-      // removeAction('IGNORE')      
-      removeAction('DELETE')
+def String thisRepositoryDir = System.getProperty('user.dir')
+def String projectDir = 'projects/vending-machine-kata-solution'
+
+job('gameoflife') {
+    scm {
+        git("file://${thisRepositoryDir}/")
     }
-  }
+    jdk('jdk-1.8')
+    steps {
+        maven {
+            mavenInstallation('maven3')
+            rootPOM("${projectDir}/pom.xml")
+            goals('test')
+        }
+    }
+    publishers {
+        archiveJunit("${projectDir}/**/surefire-reports/*.xml")
+    }
 }
