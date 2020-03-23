@@ -1,19 +1,13 @@
-def String thisRepositoryDir = System.getProperty('user.dir')
-def String projectDir = 'projects/vending-machine-kata-solution'
-
-job('DSL') {
-    scm {
-        git("file://${thisRepositoryDir}/")
+job('Seed All') {
+  scm {
+    git ('https://github.com/robinbowes/jenkins-job-dsl-seed-all-demo.git')
+  }
+  steps {
+    dsl {
+      external('jobs/*.groovy')  
+      // default behavior
+      // removeAction('IGNORE')      
+      removeAction('DELETE')
     }
-    jdk('jdk-1.8')
-    steps {
-        maven {
-            mavenInstallation('maven3')
-            rootPOM("${projectDir}/pom.xml")
-            goals('test')
-        }
-    }
-    publishers {
-        archiveJunit("${projectDir}/**/surefire-reports/*.xml")
-    }
+  }
 }
