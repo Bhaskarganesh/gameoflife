@@ -1,4 +1,4 @@
-job('Seed All') {
+job('DSL') {
   scm {
     git ('https://github.com/Bhaskarganesh/gameoflife.git')
   }
