@@ -1,7 +1,4 @@
 job('gameoflife') {
-    scm {
-        git("https://github.com/Bhaskarganesh/gameoflife.git")
-    }
     jdk('jdk-1.8')
     steps {
         maven {
